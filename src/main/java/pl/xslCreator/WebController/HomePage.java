@@ -5,9 +5,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import pl.xslCreator.FieldsDto.FieldsDto;
-import pl.xslCreator.FieldsDto.MappingDto;
-import pl.xslCreator.MappingController.MappingService;
+import pl.xslCreator.FieldsDto.XslDto;
 import pl.xslCreator.PreapreFile.PrepareXsl;
 
 @RestController
@@ -21,10 +19,8 @@ public class HomePage {
     }
 
     @PostMapping("/create")
-    public String createXslFile(@Valid @RequestBody FieldsDto fieldsDto){
-        MappingDto mappingDto = new MappingDto();
-        mappingDto.setMapping("rrs/channel/item");
-        return prepareXsl.preapreFile(fieldsDto, mappingDto);
+    public String createXslFile(@Valid @RequestBody XslDto xslDto){
+        return prepareXsl.preapreFile(xslDto.getFieldsDto(), xslDto.getMappingDto());
     }
 
 
