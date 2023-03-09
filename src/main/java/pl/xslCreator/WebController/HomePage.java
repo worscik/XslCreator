@@ -18,15 +18,19 @@ public class HomePage {
 
     PrepareXsl prepareXsl;
 
+
     public HomePage(PrepareXsl prepareXsl) {
         this.prepareXsl = prepareXsl;
     }
 
     @PostMapping("/create")
     public CreateXslResponse createXslFile(@Valid @RequestBody XslDto xslDto){
-        CreateXslResponse response = new CreateXslResponse(ResponseCode.FALSE.getDesc());
-        String xslFile = prepareXsl.preapreFile(xslDto.getFieldsDto(),xslDto.getMappingDto());
-        return new CreateXslResponse(ResponseCode.SUCCES.getDesc(), xslFile);
+        CreateXslResponse response = new CreateXslResponse();
+        String xslFile = prepareXsl.preapreFile(xslDto.getFieldsDto(),xslDto.getMappingDto(), response);
+        if(response.isSucces()){
+            return new CreateXslResponse(response.getResponseCode(), xslFile, response.isSucces());
+        }
+        return new CreateXslResponse(ResponseCode.ERROR.getDesc(),false,response.getErrMessage());
     }
 
 

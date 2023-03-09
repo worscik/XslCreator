@@ -6,6 +6,7 @@ import pl.xslCreator.FieldsDto.FieldsDto;
 import pl.xslCreator.FieldsDto.MappingDto;
 import pl.xslCreator.MappingController.MappingController;
 import pl.xslCreator.MappingController.MappingService;
+import pl.xslCreator.XslResponse.CreateXslResponse;
 
 @Service("PrepareFile")
 public class PrepareXslService implements PrepareXsl{
@@ -19,14 +20,13 @@ public class PrepareXslService implements PrepareXsl{
     }
 
     @Override
-    public String preapreFile(FieldsDto xslFileDto, MappingDto mappingDto) {
+    public String preapreFile(FieldsDto xslFileDto, MappingDto mappingDto, CreateXslResponse response) {
         boolean isMappingCorrect = mappingController.checkMapping(mappingDto);
         if(!isMappingCorrect){
-            return "Mapping is not correct";
+            response.setErrMessage("Mapping is not correct");
+            return response.getErrMessage();
         }
-
-
-        return createXsl.createStandardXsl(xslFileDto, true);
+        return createXsl.createStandardXsl(xslFileDto, true, response);
     }
 
     private boolean isCustomXsl(){

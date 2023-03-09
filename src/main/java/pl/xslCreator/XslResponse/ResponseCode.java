@@ -1,10 +1,10 @@
 package pl.xslCreator.XslResponse;
 
 public enum ResponseCode {
+    START("Ok"),
+    SUCCES("Success, the file was successfully created"),
 
-    FALSE("False"),
-    OK("OK"),
-    SUCCES("Xsl file created.");
+    ERROR("404");
 
     private String desc;
 
