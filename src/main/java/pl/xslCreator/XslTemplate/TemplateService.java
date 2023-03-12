@@ -6,7 +6,7 @@ import pl.xslCreator.HeadersService.HeadersService;
 
 public interface TemplateService {
 
-    String buildStandardFile(FieldsDto fieldsDto, String headers);
+    String buildStandardFile(FieldsDto fieldsDto, String headers,String lineToCut);
 
     //TODO CUSTOM
     String buildCustomFile();

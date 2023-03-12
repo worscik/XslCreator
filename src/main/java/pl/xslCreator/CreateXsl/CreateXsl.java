@@ -5,7 +5,7 @@ import pl.xslCreator.XslResponse.CreateXslResponse;
 
 public interface CreateXsl {
 
-    String createStandardXsl(FieldsDto fieldsDto, boolean isMappingCorrect, String headers ,CreateXslResponse response);
+    String createStandardXsl(FieldsDto fieldsDto, boolean isMappingCorrect, String headers, String lineToCut,CreateXslResponse response);
 
     String createCustomXsl(FieldsDto fieldsDto,boolean isMappingCorrect, boolean isCutLineCustom, boolean isMatchLineCustom);
 

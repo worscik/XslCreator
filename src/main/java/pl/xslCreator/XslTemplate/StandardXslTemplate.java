@@ -7,14 +7,14 @@ import pl.xslCreator.FieldsDto.FieldsDto;
 public class StandardXslTemplate extends LineBuilder implements TemplateService{
 
     @Override
-    public String buildStandardFile(FieldsDto fieldsDto, String headers) {
-//        StringBuilder sb = new StringBuilder();
+    public String buildStandardFile(FieldsDto fieldsDto, String headers, String lineToCut) {
+        StringBuilder sb = new StringBuilder();
 //
 //        //TODO HEADERS
-//        sb.append("OK");
-//
+        sb.append(headers);
+        sb.append(lineToCut);
 //        sb.append(VARIABLE);
-//
+
 //        sb.append(NEWLINE);
 //        sb.append(xmlDto.getCutLineService().standardCutFields(xmlDto.getMappingController().getMapping()) + NEWLINE); // WYCINANIE
 //        sb.append(xmlDto.getMatchLineService().standerdMatchFields(xmlDto.getMappingController().getMapping()) + NEWLINE ); // MATCH
@@ -184,7 +184,7 @@ public class StandardXslTemplate extends LineBuilder implements TemplateService{
 //        sb.append(LASTLINE);
 //        return sb.toString();
 
-        return "Working good!";
+        return sb.toString();
     }
 
     @Override

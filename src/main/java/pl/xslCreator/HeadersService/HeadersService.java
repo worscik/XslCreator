@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service("Headers")
 public class HeadersService implements Headers{
 
-    private final static String RRS_CHANNEL_ITEM = "rrs/channel/item";
+    private final static String RSS_CHANNEL_ITEM = "rss/channel/item";
     private final static String ROOT_ITEM = "root/item";
     private final static String PRODUCTS_PRODUCT = "products/product";
 
@@ -26,10 +26,22 @@ public class HeadersService implements Headers{
 
     private String chooseHeaders(String mapping){
         switch (mapping){
-            case RRS_CHANNEL_ITEM -> {
-                return headers = "test";
+            case RSS_CHANNEL_ITEM -> {
+                return headers = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                        "<xsl:stylesheet xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\" version=\"1.0\"\n" +
+                        "\t\txmlns:g=\"http://base.google.com/ns/1.0\">\n" +
+                        "    <xsl:output method=\"text\"/>\n" +
+                        "    <xsl:strip-space elements=\"node\"/>\n" +
+                        "    <xsl:strip-space elements=\"*\" />\n" +
+                        "\n" +
+                        "    <xsl:variable name=\"newline\"><xsl:text>&#x0a;</xsl:text></xsl:variable>\n" +
+                        "    <xsl:variable name=\"sep\"><xsl:text>&#x7f;</xsl:text></xsl:variable>";
             } case PRODUCTS_PRODUCT, ROOT_ITEM -> {
-                return headers = "test2";
+                return headers = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                        "<xsl:stylesheet xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\" version=\"1.0\">\n" +
+                        "    <xsl:output method=\"text\"/>\n" +
+                        "    <xsl:strip-space elements=\"node\"/>\n" +
+                        "    <xsl:strip-space elements=\"*\" />";
             }
         }
         return null;
