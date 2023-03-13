@@ -8,183 +8,181 @@ public class StandardXslTemplate extends LineBuilder implements TemplateService{
 
     @Override
     public String buildStandardFile(FieldsDto fieldsDto, String headers, String lineToCut) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder xslFile = new StringBuilder();
 //
 //        //TODO HEADERS
-        sb.append(headers);
-        sb.append(lineToCut);
-//        sb.append(VARIABLE);
+        xslFile.append(headers);
+        xslFile.append(VARIABLE);
+        xslFile.append(lineToCut);
 
-//        sb.append(NEWLINE);
-//        sb.append(xmlDto.getCutLineService().standardCutFields(xmlDto.getMappingController().getMapping()) + NEWLINE); // WYCINANIE
-//        sb.append(xmlDto.getMatchLineService().standerdMatchFields(xmlDto.getMappingController().getMapping()) + NEWLINE ); // MATCH
-//
-//        sb.append(NEWLINE);
-//
-//        sb.append("<!-- ustawienie zmiennych -->" + NEWLINE);
-//
-//        sb.append("<!--EXTERNAL_ID-->" + NEWLINE);
-//        sb.append("<xsl:choose>" + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getId() + ")\">" + " " + " " + NEWLINE); // ID
-//        sb.append("<xsl:value-of select=\"normalize-space(" + xmlDto.getFieldsDto().getId() + ")\"/>" + NEWLINE); // ID
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--NAME-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getName() + ")\">" + NEWLINE); // NAME
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getName() + "),0,100)\"/>" + NEWLINE); // NAME
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--NEW_PRODUCT-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\""+ xmlDto.getFieldsDto().getNewProductKey()+"='" + xmlDto.getFieldsDto().getNewProductValue() +"'"+ "\">" + NEWLINE);
-//        sb.append(NUMERICPATH + NEWLINE) ;
-//
-//        sb.append("<!--AVAILABLE-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\""+ xmlDto.getFieldsDto().getAvailableKey()+"='" + xmlDto.getFieldsDto().getAvailableValue() +"'"+ "\">" + NEWLINE);
-//        sb.append(NUMERICPATH + NEWLINE) ;
-//
-//        sb.append("<!--BESTSELLER-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\""+ xmlDto.getFieldsDto().getBestsellerValue()+"='" + xmlDto.getFieldsDto().getBestsellerKey() +"'"+ "\">" + NEWLINE);
-//        sb.append(NUMERICPATH + NEWLINE);
-//
-//        sb.append("<!--BRAND-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getBrand() + ")\">" + NEWLINE); // BRAND
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getBrand() + "),0,512)\"/>" + NEWLINE); // BRAND
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append(" <!--CATEGORIES-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getCategories() + ")\">" + NEWLINE); // CATEGORIES
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getCategories() + "),0,512)\"/>" + NEWLINE); // CATEGORIES
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--CATEGORY_MAIN-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getCategoryMain() + ")\">" + NEWLINE); // CATEGORY MAIN
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getCategoryMain() + "),0,200)\"/>" + NEWLINE); // CATEGORY MAIN
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--DESCRIPTION-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getDescription() + ")\">" + NEWLINE); // DESCRIPTION
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getDescription() + "),0,1024)\"/>" + NEWLINE); // DESCRIPTION
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--DETAIL_1-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getDetail1() + ")\">" + NEWLINE); // DETAIL1
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getDetail1() + "),0,512)\"/>" + NEWLINE); // DETAIL1
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--DETAIL_2-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getDetail2() + ")\">" + NEWLINE); // DETAIL2
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getDetail2() + "),0,512)\"/>" + NEWLINE); // DETAIL2
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--DETAIL_3-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getDetail3() + ")\">" + NEWLINE); // DETAIL3
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getDetail3() + "),0,512)\"/>" + NEWLINE); // DETAIL3
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--DETAIL_4-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getDetail4() + ")\">" + NEWLINE); // DETAIL4
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getDetail4() + "),0,512)\"/>" + NEWLINE); // DETAIL4
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--DETAIL_5-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getDetail5() + ")\">" + NEWLINE); // DETAIL5
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getDetail5() + "),0,512)\"/>" + NEWLINE); // DETAIL5
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--MANUFACTURER-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getManufacturer() + ")\">" + NEWLINE); // MANUFACTURER
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getManufacturer() + "),0,100)\"/>" + NEWLINE); // MANUFACTURER
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--PRICE-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length("+ xmlDto.getFieldsDto().getPrice()+")\">" + NEWLINE);
-//        sb.append("<xsl:value-of select=\"normalize-space(translate(" + xmlDto.getFieldsDto().getPrice() + ",'" + xmlDto.getFieldsDto().getCurrency()+"', ''))\"/>" + NEWLINE);
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--PRICE_PROMO-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length("+ xmlDto.getFieldsDto().getPricePromo()+")\">" + NEWLINE);
-//        sb.append("<xsl:value-of select=\"normalize-space(translate(" + xmlDto.getFieldsDto().getPricePromo() + ",'" + xmlDto.getFieldsDto().getCurrency()+"', ''))\"/>" + NEWLINE);
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--QUANTITY-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getQuantity() + ")\">" + NEWLINE); // QUANTITY
-//        sb.append("<xsl:value-of select=\"normalize-space(" + xmlDto.getFieldsDto().getQuantity() + ")\"/>" + NEWLINE); // QUANTITY
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--URL_PRODUCT-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getUrlProduct() + ")\">" + NEWLINE); // QUANTITY
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getUrlProduct() + "),0,512)\"/>" + NEWLINE); // QUANTITY
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--URL_IMG-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getUrlImg() + ")\">" + NEWLINE); // URL_IMG
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getUrlImg() + "),0,512)\"/>" + NEWLINE); // URL_IMG
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--GENDER-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\""+ xmlDto.getFieldsDto().getGenderKey()+"='" + xmlDto.getFieldsDto().getGenderValue() +"'"+ "\">" + NEWLINE);
-//        sb.append(NUMERICPATH + NEWLINE) ;
-//
-//        sb.append("<!--URL_CATEGORY-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getUrlCategory() + ")\">" + NEWLINE); // URL_CATEGORY
-//        sb.append("<xsl:value-of select=\"normalize-space(" + xmlDto.getFieldsDto().getUrlCategory() + ")\"/>" + NEWLINE); // URL_CATEGORY
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--URL_CATEGORY_MARK-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getUrlCategoryMark() + ")\">" + NEWLINE); // URL_CATEGORY_MARK
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getUrlCategoryMark() + "),0,512)\"/>" + NEWLINE); // URL_CATEGORY_MARK
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--POPULARITY-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getPopularity() + ")\">" + NEWLINE); // POPULARITY
-//        sb.append("<xsl:value-of select=\"normalize-space(" + xmlDto.getFieldsDto().getPopularity() + ")\"/>" + NEWLINE); // POPULARITY
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--SEASON-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getSeason() + ")\">" + NEWLINE); // SEASON
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getSeason() + "),0,40)\"/>" + NEWLINE); // SEASON
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--COLOR-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getColor() + ")\">" + NEWLINE); // COLOR
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getColor() + "),0,40)\"/>" + NEWLINE); // COLOR
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append("<!--ADDITIONAL_IMAGE-->" + NEWLINE);
-//        sb.append(CHOOSE + NEWLINE);
-//        sb.append("<xsl:when test=\"string-length(" + xmlDto.getFieldsDto().getAddidtionalImage() + ")\">" + NEWLINE); // ADDITIONAL_IMAGE
-//        sb.append("<xsl:value-of select=\"substring(normalize-space(" + xmlDto.getFieldsDto().getAddidtionalImage() + "),0,128)\"/>" + NEWLINE); // ADDITIONAL_IMAGE
-//        sb.append(STRINGPATH + NEWLINE);
-//
-//        sb.append(LASTLINE);
-//        return sb.toString();
+//        xslFile.append(xmlDto.getMatchLineService().standerdMatchFields(xmlDto.getMappingController().getMapping()) + NEWLINE ); // MATCH
+        xslFile.append("<!-- ustawienie zmiennych -->" + NEWLINE);
 
-        return sb.toString();
+        xslFile.append("<!--EXTERNAL_ID-->" + NEWLINE);
+        xslFile.append("<xsl:choose>" + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getId() + ")\">" + " " + " " + NEWLINE);
+        xslFile.append("<xsl:value-of select=\"normalize-space(" + fieldsDto.getId() + ")\"/>" + NEWLINE);
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--NAME-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getName() + ")\">" + NEWLINE);
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getName() + "),0,100)\"/>" + NEWLINE);
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--NEW_PRODUCT-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\""+ fieldsDto.getNewProductValue() +"='" + fieldsDto.getNewProductKey() +"'"+ "\">" + NEWLINE);
+        xslFile.append(NUMERICPATH + NEWLINE) ;
+
+        xslFile.append("<!--AVAILABLE-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\""+ fieldsDto.getAvailableKey() +"='" + fieldsDto.getAvailableValue() +"'"+ "\">" + NEWLINE);
+        xslFile.append(NUMERICPATH + NEWLINE) ;
+
+        xslFile.append("<!--BESTSELLER-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\""+ fieldsDto.getBestsellerKey() +"='" + fieldsDto.getBestsellerValue() +"'"+ "\">" + NEWLINE);
+        xslFile.append(NUMERICPATH + NEWLINE);
+
+        xslFile.append("<!--BRAND-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getBrand() + ")\">" + NEWLINE);
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getBrand() + "),0,512)\"/>" + NEWLINE);
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append(" <!--CATEGORIES-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getCategories() + ")\">" + NEWLINE);
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getCategories() + "),0,512)\"/>" + NEWLINE);
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--CATEGORY_MAIN-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getCategoryMain() + ")\">" + NEWLINE);
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getCategoryMain() + "),0,200)\"/>" + NEWLINE);
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--DESCRIPTION-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getDescription() + ")\">" + NEWLINE); // DESCRIPTION
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getDescription() + "),0,1024)\"/>" + NEWLINE); // DESCRIPTION
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--DETAIL_1-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getDetail1() + ")\">" + NEWLINE); // DETAIL1
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" +fieldsDto.getDetail1() + "),0,512)\"/>" + NEWLINE); // DETAIL1
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--DETAIL_2-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getDetail2() + ")\">" + NEWLINE); // DETAIL2
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getDetail2() + "),0,512)\"/>" + NEWLINE); // DETAIL2
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--DETAIL_3-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getDetail3() + ")\">" + NEWLINE); // DETAIL3
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getDetail3() + "),0,512)\"/>" + NEWLINE); // DETAIL3
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--DETAIL_4-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getDetail4() + ")\">" + NEWLINE); // DETAIL4
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getDetail4() + "),0,512)\"/>" + NEWLINE); // DETAIL4
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--DETAIL_5-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getDetail5() + ")\">" + NEWLINE); // DETAIL5
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getDetail5() + "),0,512)\"/>" + NEWLINE); // DETAIL5
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--MANUFACTURER-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getManufacturer() + ")\">" + NEWLINE); // MANUFACTURER
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getManufacturer() + "),0,100)\"/>" + NEWLINE); // MANUFACTURER
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--PRICE-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length("+  fieldsDto.getPrice() +")\">" + NEWLINE);
+        xslFile.append("<xsl:value-of select=\"normalize-space(translate(" + fieldsDto.getPrice() + ",'" + fieldsDto.getCurrency() +"', ''))\"/>" + NEWLINE);
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--PRICE_PROMO-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length("+ fieldsDto.getPricePromo()  +")\">" + NEWLINE);
+        xslFile.append("<xsl:value-of select=\"normalize-space(translate(" + fieldsDto.getPricePromo() + ",'" + fieldsDto.getCurrency() +"', ''))\"/>" + NEWLINE);
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--QUANTITY-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getQuantity() + ")\">" + NEWLINE);
+        xslFile.append("<xsl:value-of select=\"normalize-space(" + fieldsDto.getQuantity() + ")\"/>" + NEWLINE);
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--URL_PRODUCT-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getUrlProduct() + ")\">" + NEWLINE);
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getUrlProduct() + "),0,512)\"/>" + NEWLINE);
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--URL_IMG-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getUrlImg() + ")\">" + NEWLINE); // URL_IMG
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getUrlImg() + "),0,512)\"/>" + NEWLINE); // URL_IMG
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--GENDER-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\""+ fieldsDto.getGenderValue() +"='" + fieldsDto.getGenderKey() +"'"+ "\">" + NEWLINE);
+        xslFile.append(NUMERICPATH + NEWLINE) ;
+
+        xslFile.append("<!--URL_CATEGORY-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getUrlCategory() + ")\">" + NEWLINE); // URL_CATEGORY
+        xslFile.append("<xsl:value-of select=\"normalize-space(" + fieldsDto.getUrlCategory() + ")\"/>" + NEWLINE); // URL_CATEGORY
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--URL_CATEGORY_MARK-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getUrlCategoryMark() + ")\">" + NEWLINE); // URL_CATEGORY_MARK
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getUrlCategoryMark() + "),0,512)\"/>" + NEWLINE); // URL_CATEGORY_MARK
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--POPULARITY-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getPopularity() + ")\">" + NEWLINE); // POPULARITY
+        xslFile.append("<xsl:value-of select=\"normalize-space(" + fieldsDto.getPopularity() + ")\"/>" + NEWLINE); // POPULARITY
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--SEASON-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getSeason() + ")\">" + NEWLINE); // SEASON
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getSeason() + "),0,40)\"/>" + NEWLINE); // SEASON
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--COLOR-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getColor() + ")\">" + NEWLINE); // COLOR
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getColor() + "),0,40)\"/>" + NEWLINE); // COLOR
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append("<!--ADDITIONAL_IMAGE-->" + NEWLINE);
+        xslFile.append(CHOOSE + NEWLINE);
+        xslFile.append("<xsl:when test=\"string-length(" + fieldsDto.getAddidtionalImage() + ")\">" + NEWLINE); // ADDITIONAL_IMAGE
+        xslFile.append("<xsl:value-of select=\"substring(normalize-space(" + fieldsDto.getAddidtionalImage() + "),0,128)\"/>" + NEWLINE); // ADDITIONAL_IMAGE
+
+
+        xslFile.append(STRINGPATH + NEWLINE);
+
+        xslFile.append(LASTLINE);
+
+        System.out.println(xslFile);
+
+        return xslFile.toString();
     }
 
     @Override
